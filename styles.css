@@ -1,0 +1,99 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fefefe;
+}
+
+section {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+#hero {
+  background-color: #0A192F;
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+#hero h1 {
+  font-size: 2.5rem;
+}
+
+#hero p {
+  font-size: 1.2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #64ffda;
+  color: #0A192F;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+h2 {
+  color: #0A192F;
+  border-bottom: 2px solid #64ffda;
+  padding-bottom: 0.3rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+}
+
+.project-card {
+  background: #f9f9f9;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 4px solid #64ffda;
+  padding-left: 1rem;
+  margin: 1rem 0;
+}
+
+a {
+  color: #0A192F;
+}
+
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 1.8rem;
+  }
+  #hero p {
+    font-size: 1rem;
+  }
+  .cta-button {
+    padding: 0.5rem 1rem;
+  }
+}
+form {
+  margin-top: 1rem;
+}
+input, textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+button {
+  background-color: #0A192F;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
