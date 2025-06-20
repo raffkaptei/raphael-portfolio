@@ -121,17 +121,22 @@
     <p>Email me: <a href="mailto:lesiamitoraphael@gmail.com">lesiamitoraphael@gmail.com</a></p>
     <p>Or reach me via <a href="https://www.linkedin.com/in/raphael-software-developer/">LinkedIn</a></p>
 
-    <form action="https://formspree.io/f/meoklklb" method="POST">
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name" autocomplete="name" required><br>
+    <form id="contact-form" action="https://formspree.io/f/meoklklb" method="POST">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" autocomplete="name" required><br>
 
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" autocomplete="email" required><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" autocomplete="email" required><br>
 
-      <label for="message">Message:</label><br>
-      <textarea id="message" name="message" autocomplete="off" rows="5" required></textarea><br>
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="5" autocomplete="off" required></textarea><br>
 
-      <button type="submit">Send Message</button>
+    <button type="submit" id="submit-button">
+      <span id="spinner" style="display:none;">⏳</span>
+      <span id="submit-text">Send Message</span>
+    </button>
+
+    <p id="form-status" style="margin-top: 10px;"></p>
     </form>
   </section>
 
@@ -146,5 +151,44 @@
     });
     faders.forEach(el => observer.observe(el));
   </script>
+  <script>
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  const button = document.getElementById('submit-button');
+  const spinner = document.getElementById('spinner');
+  const text = document.getElementById('submit-text');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    spinner.style.display = 'inline-block';
+    text.textContent = 'Sending...';
+
+    const data = new FormData(form);
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        status.style.color = 'green';
+        status.textContent = '✅ Thank you! Your message was sent.';
+        form.reset();
+      } else {
+        throw new Error('Form error');
+      }
+    } catch (error) {
+      status.style.color = 'red';
+      status.textContent = '❌ Oops! Something went wrong. Please try again later.';
+    } finally {
+      spinner.style.display = 'none';
+      text.textContent = 'Send Message';
+    }
+  });
+</script>
+
 </body>
 </html>
