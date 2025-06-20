@@ -25,21 +25,67 @@
   <meta property="og:image" content="https://raffkaptei.github.io/raphael-portfolio/assets/og-preview.jpg" />
   <meta property="og:url" content="https://raffkaptei.github.io/raphael-portfolio/" />
   <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .cta-button:hover {
+      background-color: #2e6edb;
+      transform: scale(1.05);
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .project-card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .project-card h3 {
+      margin-top: 0;
+    }
+    .button-row {
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 <body>
 
-  <section id="hero">
+  <section id="hero" class="fade-in">
     <h1>Hi, I’m Raphael Lesiamito</h1>
     <p>I help small businesses, NGOs, and startups solve IT problems, streamline operations, and build smarter digital systems.</p>
-    <a href="#contact" class="cta-button">Work With Me</a>
+    <div class="button-row">
+      <a href="#contact" class="cta-button">Work With Me</a>
+      <a href="assets/raphael-cv.pdf" class="cta-button" download>Download My CV</a>
+      <a href="projects.html" class="cta-button">View Projects</a>
+    </div>
   </section>
 
-  <section id="about">
+  <section id="about" class="fade-in">
     <h2>About Me</h2>
     <p>I’m a Business Information Technology graduate with hands-on experience in tech support, customer success, and digital tools like Notion, Trello, and Google Workspace. I’m passionate about helping organizations stay efficient and connected through smart systems.</p>
   </section>
 
-  <section id="services">
+  <section id="services" class="fade-in">
     <h2>What I Do</h2>
     <ul>
       <li><strong>Tech Support & Troubleshooting:</strong> For startups, NGOs & SMEs</li>
@@ -49,7 +95,7 @@
     </ul>
   </section>
 
-  <section id="projects">
+  <section id="projects" class="fade-in">
     <h2>Recent Work</h2>
     <div class="project-card">
       <h3>EcoTrack Dashboard</h3>
@@ -63,32 +109,42 @@
     </div>
   </section>
 
-  <section id="testimonials">
+  <section id="testimonials" class="fade-in">
     <h2>What People Say</h2>
     <blockquote>
       "Raphael helped us clean up our digital processes. Super fast and reliable!" – Startup Founder
     </blockquote>
   </section>
 
-  <section id="contact">
+  <section id="contact" class="fade-in">
     <h2>Let’s Work Together</h2>
     <p>Email me: <a href="mailto:lesiamitoraphael@gmail.com">lesiamitoraphael@gmail.com</a></p>
     <p>Or reach me via <a href="https://www.linkedin.com/in/raphael-software-developer/">LinkedIn</a></p>
 
-  <form action="https://formspree.io/f/meoklklb" method="POST">
-  <label for="name">Name:</label><br>
-  <input type="text" id="name" name="name" autocomplete="name" required><br>
+    <form action="https://formspree.io/f/meoklklb" method="POST">
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" autocomplete="name" required><br>
 
-  <label for="email">Email:</label><br>
-  <input type="email" id="email" name="email" autocomplete="email" required><br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" autocomplete="email" required><br>
 
-  <label for="message">Message:</label><br>
-  <textarea id="message" name="message" autocomplete="off" rows="5" required></textarea><br>
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" autocomplete="off" rows="5" required></textarea><br>
 
-  <button type="submit">Send Message</button>
-  </form>
-
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
+  <script>
+    const faders = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+    faders.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
