@@ -2,51 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | Raphael Lesiamito</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta name="description" content="Projects by Raphael Lesiamito – Tech support, Notion systems, audits and digital tools for NGOs and small businesses." />
   <style>
     body {
       font-family: sans-serif;
       padding: 20px;
+      background-color: #f9f9f9;
+      color: #1a1a1a;
     }
-    .project-list {
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .projects-grid {
       display: grid;
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
     .project-card {
-      border: 1px solid #ccc;
+      background: white;
       border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s ease;
     }
-    .project-card h2 {
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+    .project-card h3 {
       margin-top: 0;
+      color: #1a73e8;
     }
-    a.button {
+    .project-card p {
+      font-size: 0.95rem;
+    }
+    .project-card a {
       display: inline-block;
-      margin-top: 1rem;
-      padding: 10px 15px;
-      background: #1a73e8;
-      color: white;
+      margin-top: 10px;
+      color: #1a73e8;
       text-decoration: none;
-      border-radius: 5px;
+      font-weight: 500;
+    }
+    .project-card a:hover {
+      text-decoration: underline;
+    }
+    .back-home {
+      display: block;
+      margin: 30px auto 0;
+      text-align: center;
+      text-decoration: none;
+      color: #1a73e8;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>Projects & Case Studies</h1>
-  <section class="project-list">
-    <div class="project-card">
-      <h2>EcoTrack Dashboard</h2>
-      <p>A Notion-based system for tracking energy audits and reports.</p>
-    </div>
-    <div class="project-card">
-      <h2>SME Website Fix</h2>
-      <p>Improved SEO, fixed layout bugs, and optimized images for faster load time.</p>
-    </div>
-  </section>
+  <h1>My Featured Projects</h1>
 
-  <a href="index.html" class="button">← Back to Home</a>
+  <div class="projects-grid">
+    <div class="project-card">
+      <h3>EcoTrack Dashboard</h3>
+      <p>Custom Notion-based dashboard to help an energy consultancy manage their audit projects and clients efficiently.</p>
+      <a href="#" target="_blank">View Details</a>
+    </div>
+    <div class="project-card">
+      <h3>SME Website Optimization</h3>
+      <p>Improved site speed, added mobile responsiveness, and resolved layout issues for a local hardware shop.</p>
+      <a href="#" target="_blank">View Case Study</a>
+    </div>
+    <div class="project-card">
+      <h3>NGO Workflow System</h3>
+      <p>Developed a Trello + Google Sheets workflow for donor reporting and internal activity tracking for a youth NGO.</p>
+      <a href="#" target="_blank">Explore Project</a>
+    </div>
+    <div class="project-card">
+      <h3>Digital Tools Setup</h3>
+      <p>Configured Google Workspace, security policies, and email templates for a growing startup.</p>
+      <a href="#" target="_blank">See Overview</a>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
 </body>
 </html>
