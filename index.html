@@ -30,6 +30,16 @@
     html {
       scroll-behavior: smooth;
     }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      margin: 0;
+      line-height: 1.6;
+      background: #f9f9f9;
+    }
+    h1, h2, h3 {
+      color: #1a1a1a;
+    }
     .cta-button {
       display: inline-block;
       padding: 10px 20px;
@@ -39,6 +49,7 @@
       border-radius: 5px;
       text-decoration: none;
       transition: background-color 0.3s ease, transform 0.2s ease;
+      margin: 5px;
     }
     .cta-button:hover {
       background-color: #2e6edb;
@@ -53,18 +64,62 @@
       opacity: 1;
       transform: translateY(0);
     }
+    .button-row {
+      margin-top: 1rem;
+    }
     .project-card {
       border: 1px solid #ddd;
       padding: 15px;
       margin: 10px 0;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background: white;
     }
     .project-card h3 {
       margin-top: 0;
     }
-    .button-row {
-      margin-top: 1rem;
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    form button {
+      background-color: #1a73e8;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background-color: #155ab6;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .button-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .cta-button {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -122,21 +177,21 @@
     <p>Or reach me via <a href="https://www.linkedin.com/in/raphael-software-developer/">LinkedIn</a></p>
 
     <form id="contact-form" action="https://formspree.io/f/meoklklb" method="POST">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" autocomplete="name" required><br>
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" autocomplete="name" required><br>
 
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" autocomplete="email" required><br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" autocomplete="email" required><br>
 
-    <label for="message">Message:</label><br>
-    <textarea id="message" name="message" rows="5" autocomplete="off" required></textarea><br>
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" rows="5" autocomplete="off" required></textarea><br>
 
-    <button type="submit" id="submit-button">
-      <span id="spinner" style="display:none;">⏳</span>
-      <span id="submit-text">Send Message</span>
-    </button>
+      <button type="submit" id="submit-button">
+        <span id="spinner" style="display:none;">⏳</span>
+        <span id="submit-text">Send Message</span>
+      </button>
 
-    <p id="form-status" style="margin-top: 10px;"></p>
+      <p id="form-status" style="margin-top: 10px;"></p>
     </form>
   </section>
 
@@ -150,45 +205,41 @@
       });
     });
     faders.forEach(el => observer.observe(el));
-  </script>
-  <script>
-  const form = document.getElementById('contact-form');
-  const status = document.getElementById('form-status');
-  const button = document.getElementById('submit-button');
-  const spinner = document.getElementById('spinner');
-  const text = document.getElementById('submit-text');
 
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    spinner.style.display = 'inline-block';
-    text.textContent = 'Sending...';
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    const button = document.getElementById('submit-button');
+    const spinner = document.getElementById('spinner');
+    const text = document.getElementById('submit-text');
 
-    const data = new FormData(form);
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: {
-          'Accept': 'application/json'
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      spinner.style.display = 'inline-block';
+      text.textContent = 'Sending...';
+
+      const data = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          status.style.color = 'green';
+          status.textContent = '✅ Thank you! Your message was sent.';
+          form.reset();
+        } else {
+          throw new Error('Form error');
         }
-      });
-
-      if (response.ok) {
-        status.style.color = 'green';
-        status.textContent = '✅ Thank you! Your message was sent.';
-        form.reset();
-      } else {
-        throw new Error('Form error');
+      } catch (error) {
+        status.style.color = 'red';
+        status.textContent = '❌ Oops! Something went wrong. Please try again later.';
+      } finally {
+        spinner.style.display = 'none';
+        text.textContent = 'Send Message';
       }
-    } catch (error) {
-      status.style.color = 'red';
-      status.textContent = '❌ Oops! Something went wrong. Please try again later.';
-    } finally {
-      spinner.style.display = 'none';
-      text.textContent = 'Send Message';
-    }
-  });
-</script>
-
+    });
+  </script>
 </body>
 </html>
